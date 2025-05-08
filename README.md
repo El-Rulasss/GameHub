@@ -1,4 +1,3 @@
-# Proyecto-Integrador-C++
 # 🎮 Game Hub
 
 **Autor:** Jonathan Raúl Rea Bravo  
