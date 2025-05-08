@@ -8,15 +8,14 @@
 
 ## 📝 Descripción
 
-**Game Hub** es una aplicación de consola desarrollada en C++ que permite registrar, eliminar, actualizar y visualizar información sobre videojuegos. Su objetivo es gestionar una base de datos básica de títulos, facilitando su organización y consulta desde una interfaz sencilla por terminal.
-
-Este proyecto fue creado como parte de una asignatura académica, enfocándose en la aplicación de estructuras de control, funciones y manejo de archivos.
+**Game Hub** es una aplicación de consola desarrollada en C++ que permite registrar, eliminar, actualizar y visualizar información sobre videojuegos.
+Este proyecto fue creado como parte de una asignatura académica, enfocándose en la aplicación de estructuras de control y funciones.
 
 ---
 
 ## ⚙️ ¿Qué puedes hacer con Game Hub?
 
-- 📌 **Registrar** nuevos videojuegos con sus datos básicos (nombre, género, plataforma, etc.)
+- 📌 **Registrar** nuevos videojuegos con sus datos básicos (nombre, plataforma, desarrollador y año de lanzamiento.)
 - 🗑️ **Eliminar** videojuegos existentes
 - 🛠️ **Actualizar** información de un videojuego
 - 🔍 **Mostrar** todos los videojuegos registrados
