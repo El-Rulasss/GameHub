@@ -147,7 +147,183 @@ void EliminarVideoJuego(){
 	else{
         cout << "Opción inválida.\n";
     }
+}
+
+void ModificarVideoJuego(){
+    if (totalJuegos == 0) {
+        cout << "No hay videojuegos registrados aun.\n";
+        cout << "\nRegresaras al menu principal automaticamente en 5 segundos.";
+        Sleep(5000);
+        system("cls");
+        return;
+    }
     
+    int opcionBusqueda;
+    cout << "\n ¿Como deseas buscar el videojuego a modificar?\n";
+    cout << "1. Por ID\n2. Por Nombre\nSelecciona una opcion: ";
+    cin >> opcionBusqueda;
+    system("cls");
+
+    int id = -1;
+
+    if (opcionBusqueda == 1) {
+        cout << "Ingresa el ID del videojuego: ";
+        cin >> id;
+        id--;
+
+        if (id < 0 || id >= totalJuegos) {
+            cout << "ID invalido.\n";
+            cout << "\nRegresaras al menu principal automaticamente en 5 segundos.";
+            Sleep(5000);
+            system("cls");
+            return;
+        }
+    } 
+	else if (opcionBusqueda == 2) {
+        string nombre;
+        cin.ignore();
+        cout << "Ingresa el nombre del videojuego: ";
+        getline(cin, nombre);
+
+        bool encontrado = false;
+        for (int i = 0; i < totalJuegos; i++) {
+            if (DatosRegistro[i].NombreJuego == nombre) {
+                id = i;
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            cout << "Videojuego no encontrado.\n";
+            cout << "\nRegresaras al menu principal automaticamente en 5 segundos.";
+            Sleep(5000);
+            system("cls");
+            return;
+        }
+    } 
+	else {
+        cout << "Opcion invalida.\n";
+        return;
+    }
+
+    cout << "\nVideojuego encontrado:\n";
+    cout << "Nombre: " << DatosRegistro[id].NombreJuego << endl;
+    cout << "Plataforma: " << DatosRegistro[id].Plataforma << endl;
+    cout << "Desarrollador: " << DatosRegistro[id].Desarrollador << endl;
+    cout << "Año de Lanzamiento: " << DatosRegistro[id].Lanzamiento << endl;
+
+    char confirmacion;
+    cout << "\n¿Quieres modificar este videojuego? (S/s para si, N/n para no): ";
+    cin >> confirmacion;
+
+    if (confirmacion == 'S' || confirmacion == 's') {
+        cin.ignore();
+        cout << "\nIngresa el nuevo nombre del videojuego: ";
+        getline(cin, DatosRegistro[id].NombreJuego);
+        cout << "Ingresa la nueva plataforma: ";
+        getline(cin, DatosRegistro[id].Plataforma);
+        cout << "Ingresa el nuevo desarrollador: ";
+        getline(cin, DatosRegistro[id].Desarrollador);
+        cout << "Ingresa el nuevo año de lanzamiento: ";
+        cin >> DatosRegistro[id].Lanzamiento;
+
+        cout << "\nVideojuego modificado correctamente.\n";
+    } 
+	else if (confirmacion == 'N' || confirmacion == 'n') {
+        cout << "\nModificacion cancelada.\n";
+    } 
+	else {
+        cout << "Opcion invalida.\n";
+    }
+
+    cout << "\nRegresaras al menu principal automaticamente en 5 segundos.";
+    Sleep(5000);
+    system("cls");
+}
+
+void MostrarVideoJuegos(){
+    if (totalJuegos == 0) {
+        cout << "No hay videojuegos registrados aun.\n";
+    } else {
+        cout << "\n----- Catalogo de Videojuegos -----\n";
+        for (int i = 0; i < totalJuegos; i++) {
+            cout << "ID: " << i + 1 << endl;
+            cout << "Nombre: " << DatosRegistro[i].NombreJuego << endl;
+            cout << "Plataforma: " << DatosRegistro[i].Plataforma << endl;
+            cout << "Desarrollador: " << DatosRegistro[i].Desarrollador << endl;
+            cout << "Año de Lanzamiento: " << DatosRegistro[i].Lanzamiento << endl;
+            cout << "-------------------------------\n";
+        }
+    }
+    cout << "\nPresiona una tecla para regresar al menú principal.";
+    system("pause");
+    system("cls");
+}
+
+void BuscarVideoJuego(){
+    if (totalJuegos == 0) {
+        cout << "No hay videojuegos registrados aun.\n";
+        cout << "\nPresiona una tecla para regresar al menú principal.";
+        system("pause");
+        system("cls");
+        return;
+    }
+
+    int opcionBusqueda;
+    cout << "\n ¿Cómo deseas buscar el videojuego?\n";
+    cout << "1. Por ID\n2. Por Nombre\nSelecciona una opción: ";
+    cin >> opcionBusqueda;
+    system("cls");
+
+    if (opcionBusqueda == 1) {
+        int id;
+        cout << "Ingresa el ID del videojuego: ";
+        cin >> id;
+        id--;
+
+        if (id < 0 || id >= totalJuegos) {
+            cout << "ID inválido.\n";
+        } else {
+            cout << "\nVideojuego encontrado:\n";
+            cout << "ID: " << id + 1 << endl;
+            cout << "Nombre: " << DatosRegistro[id].NombreJuego << endl;
+            cout << "Plataforma: " << DatosRegistro[id].Plataforma << endl;
+            cout << "Desarrollador: " << DatosRegistro[id].Desarrollador << endl;
+            cout << "Año de Lanzamiento: " << DatosRegistro[id].Lanzamiento << endl;
+        }
+    } 
+	else if (opcionBusqueda == 2) {
+        string nombre;
+        cin.ignore();
+        cout << "Ingresa el nombre del videojuego: ";
+        getline(cin, nombre);
+
+        bool encontrado = false;
+        for (int i = 0; i < totalJuegos; i++) {
+            if (DatosRegistro[i].NombreJuego == nombre) {
+                encontrado = true;
+                cout << "\nVideojuego encontrado:\n";
+                cout << "ID: " << i + 1 << endl;
+                cout << "Nombre: " << DatosRegistro[i].NombreJuego << endl;
+                cout << "Plataforma: " << DatosRegistro[i].Plataforma << endl;
+                cout << "Desarrollador: " << DatosRegistro[i].Desarrollador << endl;
+                cout << "Año de Lanzamiento: " << DatosRegistro[i].Lanzamiento << endl;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            cout << "Videojuego no encontrado.\n";
+        }
+    } 
+	else {
+        cout << "Opción inválida.\n";
+    }
+
+    cout << "\nPresiona una tecla para regresar al menú principal.";
+    system("pause");
+    system("cls");
 }
 
 int main(){
@@ -156,7 +332,7 @@ int main(){
 	
     do {
     	cout<<"---------------------";
-        cout << "\n1. Altas \n2. Bajas \n3. Modificaciones \n4. Consultas \n5. Salir\n";
+        cout << "\n1. Registrar VideoJuegos \n2. Eliminar VideoJuegos \n3. Modificar VideoJuegos \n4. Mostrar VideoJuegos \n5. Buscar VideoJuego \n6. Salir\n";
         cout<<"---------------------\n";
         cout << " Seleccione una opcion: ";
         cin >> opcion;
@@ -171,41 +347,22 @@ int main(){
             	EliminarVideoJuego();
                 break;
             case 3:
-            	cout<<"Proximamente"<<endl;
-                cout << "\n Modificaciones ingresa el Nombre o ID del videojuego: \n";
-                cout << "\n Videojuego encontrado los datos son:\n";
-                cout << "\n Nombre:  "<<endl;
-                cout << "\n Plataforma:  "<<endl;
-				cout << "\n Desarollador:  "<<endl;
-				cout << "\n Lanzamiento:  "<<endl;
-				cout << "\n Quieres modificar este video juego ? (1/Si 2/No): \n";
-				cout << "\n Nombre:  "<<endl;
-                cout << "\n Plataforma:  "<<endl;
-				cout << "\n Desarollador:  "<<endl;
-				cout << "\n Lanzamiento:  "<<endl;
-				cout << "\n Videojuego modificado correctamente\n"<<endl; 
-				system("pause");
-                system("cls");
+            	ModificarVideoJuego();
                 break;
             case 4:
-            	cout << "\n Catalogo Videojuegos Proximamente\n";
-            	cout<<"-------------------------------";
-                cout << "\n Nombre:  "<<endl;
-                cout << "\n Plataforma:  "<<endl;
-				cout << "\n Desarollador:  "<<endl;
-				cout << "\n Lanzamiento:  "<<endl;
-				cout<<"-------------------------------";
-				system("pause");
-                system("cls");
+            	MostrarVideoJuegos();
             	break;
-            case 5: 
+            case 5:
+            	BuscarVideoJuego();
+            	break;
+            case 6: 
             	cout << "Saliendo del sistema...\n";
             	system("pause");
             	break;
             default:
                 cout << "Opción no válida. Intente de nuevo.\n";
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
 	
 	return 0;
 }
